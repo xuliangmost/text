@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="js/jquery-3.1.1.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+</head>
+<body>
+<input type="text" id="t1" placeholder="用户名">
+<input type="text" id="t2" placeholder="密码">
+<input type="button" id="b1" value="登录">
+<input type="button" id="b2" value="获取">
+<script>
+	$("#b1").click(function () {
+		var uName=$("#t1").val();
+		var uPassword=$("#t2").val();
+		var tar={
+			username:uName,
+			userpassword:uPassword
+		};
+		$.cookie("user",JSON.stringify(tar),{expires:14,path:"/"})
+	});
+
+
+	$("#b2").click(function () {
+		var tar=JSON.parse($.cookie("user"));
+		$("#t1").val(tar.username);
+		$("#t2").val(tar.userpassword);
+
+	})
+</script>
+</body>
+</html>
